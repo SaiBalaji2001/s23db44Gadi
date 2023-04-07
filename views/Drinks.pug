@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1=title
+    -
+        let results = [{"DrinkName": "Coke", "DrinkSize": "Large", "DrinkCost": 14,},{"DrinkName": "Sprite","DrinkSize": "Medium","DrinkCost": 18,},{"DrinkName": "Water","DrinkSize": "small","DrinkCost": 8,}]
+
+    div(class= "container-fluid")
+        div(class = "row")  
+            each item, index in results
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : &nbsp; #{item.DrinkName}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize : &nbsp; #{item.DrinkSize}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost : &nbsp; #{item.DrinkCost}
+
+
+    script.
+        function buy(itemNum){
+        alert(`You purchased item ${itemNum+1}`)
+        }
