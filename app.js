@@ -6,9 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var drinksRouter = require('./routes/Drink');
+var drinkRouter = require('./routes/Drink');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var drinksRouter = require('./routes/Drinks');
+var resourceRouter = require('./routes/resource');
+var Drinks = require('./models/Drinks');
 
 var app = express();
 
@@ -23,9 +26,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/Drink', drinksRouter);
+app.use('/Drink', drinkRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource/Drinks', resourceRouter);
+app.use('/resource', resourceRouter);
+app.use('/Drinks', resourceRouter);
+app.use('/Drinks', drinksRouter);
 
 // catch 404 and forward to error handler'
 app.use(function(req, res, next) {
@@ -44,3 +51,58 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+const mongoose = require('mongoose');
+mongoose.connect("mongodb+srv://saibalaji:balaji@cluster0.sehysjn.mongodb.net/test",
+{useNewUrlParser: true,
+useUnifiedTopology: true});
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+// Delete everything
+await Drinks.deleteMany();
+let instance1 = new
+Drinks({Drinks_name:"coke", Drinks_size:'Medium',
+cost:150});
+instance1.save();
+// function(err,doc) {
+// if(err) return console.error(err);
+// console.log("First object saved")
+// });
+
+let instance2 = new
+Drinks({Drinks_name:"sprite", Drinks_size:'large',
+cost:300});
+instance2.save();
+// function(err,doc) {
+// if(err) return console.error(err);
+// console.log("First object saved")
+// });
+
+let instance3 = new
+Drinks({Drinks_name:"fanta", Drinks_size:'small',
+cost:90});
+instance3.save();
+// function(err,doc) {
+// if(err) return console.error(err);
+// console.log("First object saved")
+// });
+}
+let reseed = true;
+if (reseed) { recreateDB();}
+
+
+//Get the default connection
+
+var db = mongoose.connection;
+
+//Bind connection to error event
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+db.once("open", function(){
+
+console.log("Connection to DB succeeded")});
