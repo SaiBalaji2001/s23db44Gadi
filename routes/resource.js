@@ -5,7 +5,7 @@ var api_controller = require('../controllers/api');
 var Drinks_controller = require('../controllers/Drinks');
 /// API ROUTE ///
 // GET resources base.
-// router.get('/', api_controller.api);
+router.get('/', api_controller.api);
 /// COSTUME ROUTES ///
 // POST request for creating a Costume.
 router.post('/Drinks', Drinks_controller.Drinks_create_post);

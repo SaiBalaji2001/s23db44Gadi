@@ -2,15 +2,14 @@ extends layout
 
 block content
     h1=title
-    -
-        let results = [{"DrinkName": "Coke", "DrinkSize": "Large", "DrinkCost": 14,},{"DrinkName": "Sprite","DrinkSize": "Medium","DrinkCost": 18,},{"DrinkName": "Water","DrinkSize": "small","DrinkCost": 8,}]
+    - let items = results 
 
     div(class= "container-fluid")
         div(class = "row")  
-            each item, index in results
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : &nbsp; #{item.DrinkName}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize : &nbsp; #{item.DrinkSize}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost : &nbsp; #{item.DrinkCost}
+            each item, index in items 
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : &nbsp; #{item.Drinks_name}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize : &nbsp; #{item.Drinks_size}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost : &nbsp; #{item.cost}
 
 
     script.
