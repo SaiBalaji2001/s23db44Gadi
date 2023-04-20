@@ -1,34 +1,68 @@
-extends layout 
+extends layout
+
  
-block content 
-  h1= title 
+
+block content
+
+  h1= title
+
  
-  form(id='DrinksForm', action="/resource/Drinks", method="POST") 
-    div.form-group 
-        label.uniAttr(for='Drinks_name') Drinks_name 
-        input#Drinks_name(type='text', name='Drinks_name') 
-    div.form-group 
-        label.uniAttr(for='Drinks_size') Drinks_size  
-        input#Drinks_size(type='text', name='Drinks_size') 
-    div.form-group 
-        label.uniAttr(for='cost ') cost
-        input#cost(type='number', name='cost ') 
-    input(type="submit") 
+
+  form(id='DrinksForm', action="/resource/Drinks", method="POST")
+
+    div.form-group
+
+        label.drinksAttr(for='Drinks_name') Drinks_name
+
+        input#Drinks_name(type='text', name='Drinks_name')
+
+    div.form-group
+
+        label.drinksAttr(for='Drinks_size') Drinks_size
+
+        input#Drinks_size(type='text', name='Drinks_size')
+
+    div.form-group
+
+        label.drinksAttr(for='cost') cost
+
+        input#cost(type='number', name='cost')
+
+    input(type="submit")
+
  
-  script. 
-    document.forms['DrinksForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'POST', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Save succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
-        // TODO handle error 
-        alert("Save failed " + error ) 
-      }); 
+
+  script.
+
+    document.forms['DrinksForm'].addEventListener('submit', (event) => {
+
+      event.preventDefault();
+
+      // TODO do something here to show user that form is being submitted
+
+      fetch(event.target.action, {
+
+        method: 'POST',
+
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+
+      }).then((resp) => {
+
+        return resp.json(); // or resp.text() or whatever the server sends
+
+      }).then((body) => {
+
+        alert("Save succeded")
+
+        // TODO handle body
+
+      }).catch((error) => {
+
+        // TODO handle error
+
+        alert("Save failed " + error )
+
+      });
+
     });
+

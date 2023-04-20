@@ -1,0 +1,90 @@
+extends layout
+
+
+
+block content
+
+    h1(id="title")= title
+
+
+
+    if (toShow == null)
+
+        h2 No instance to update
+
+    else
+
+    - let DrinksId = toShow._id
+
+    - let Drinks_name = toShow.Drinks_name
+
+    - let Drinks_size = toShow.Drinks_size
+
+    - let cost = toShow.cost
+
+
+
+    div.row(class='mb-2')
+
+        div.mr-1 ID is
+
+        div(class='details') #{DrinksId}
+
+    - let actionid = "/resource/Drinks/" + DrinksId
+
+    form(id='DrinksForm', action= actionid, method="PUT")
+
+        div.form-group
+
+            label.DrinkAttr(for='Drinks_name') Name
+
+            input#Drinks_name(type='text' name='Drinks_name', value= Drinks_name )
+
+        div.form-group
+
+            label.DrinkAttr(for='Drinks_size') Color
+
+            input#Drinks_size(type='text' name='Drinks_size', value=Drinks_size )
+
+        div.form-group
+
+            label.DrinkAttr(for='cost') Price
+
+            input#cost(type='number', name= 'cost', value= cost )
+
+        input(type="submit")
+
+    script.
+
+        document.forms['DrinksForm'].addEventListener('submit', (event) => {
+
+            event.preventDefault();
+
+            // TODO do something here to show user that form is being submitted
+
+            fetch(event.target.action, {
+
+                method: 'PUT',
+
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+
+            }).then((resp) => {
+
+                return resp.json(); // or resp.text() or whatever the server sends
+
+            }).then((body) => {
+
+                alert("Update succeded")
+
+                // TODO handle body
+
+            }).catch((error) => {
+
+                // TODO handle error
+
+                alert("Update failed " + error )
+
+            });
+
+        });
+
