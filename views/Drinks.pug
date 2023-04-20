@@ -7,9 +7,9 @@ block content
     div(class= "container-fluid")
         div(class = "row")  
             each item, index in items 
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : &nbsp; #{item.Drinks_name}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize : &nbsp; #{item.Drinks_size}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost : &nbsp; #{item.cost}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : #{item.Drinks_name}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize :  #{item.Drinks_size}
+                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost :  #{item.cost}
 
 
     script.

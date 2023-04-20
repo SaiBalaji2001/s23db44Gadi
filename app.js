@@ -29,9 +29,7 @@ app.use('/users', usersRouter);
 app.use('/Drink', drinkRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
-app.use('/resource/Drinks', resourceRouter);
 app.use('/resource', resourceRouter);
-app.use('/Drinks', resourceRouter);
 app.use('/Drinks', drinksRouter);
 
 // catch 404 and forward to error handler'
