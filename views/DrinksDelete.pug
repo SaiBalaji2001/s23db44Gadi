@@ -1,58 +1,41 @@
 extends layout
 
- 
-
 block content
 
   h1= title
-
- 
-
   if (toShow == null)
-
     h2 No instance to delete
-
   else
-
     - let DrinksId = toShow._id
-
     - let Drinks_name = toShow.Drinks_name
-
     - let Drinks_size = toShow.Drinks_size
-
     - let Drinks_cost = toShow.cost
-
     - let actionid = "/resource/drinks/" + DrinksId
-
     script let actionid = "#{actionid}"
-
     div
-
       div.row
-
-        div(class='drinksAttr mr-3') Drink ID is:
-
+        div(class='drinkAttr mr-3') Drink ID is:
         div(class='details mr-3') #{DrinksId}
-
       div.row
-
-        div(class='drinksAttr mr-3') Drink Type is:
-
+        div(class='drinkAttr mr-3') Drink Type is:
         div(class='details mr-3') #{Drinks_name}
-
       div.row
-
-        div(class='drinksAttr mr-3') Drink Size is:
-
+        div(class='drinkAttr mr-3') Drink Size is:
         div(class='details mr-3') #{Drinks_size}
-
       div.row
-
-        div(class='drinksAttr mr-3') Drink Cost is:
-
+        div(class='drinkAttr mr-3') Drink Cost is:
         div(class='details mr-3') #{Drinks_cost}
 
  
+
+
+
+
+
+
+
+
+
 
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
 

@@ -2,17 +2,19 @@ extends layout
 
 block content
     h1=title
-    - let items = results 
-
-    div(class= "container-fluid")
-        div(class = "row")  
-            each item, index in items 
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkName : #{item.Drinks_name}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkSize :  #{item.Drinks_size}
-                div(class= "col-sm-2", onclick=`buy(${index})`) DrinkCost :  #{item.cost}
-
+    - let items = results
+    div(class="container-fluid")
+     div(class="row m-1")
+        each item in items
+         - let destination = `dispatch(\"/Drinks/update?id=${item._id}\")`
+         div(class="row-sm-2" class="m-1") Item #{item.Drinks_name}(#{item.Drinks_size}) is #{item.cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
 
     script.
         function buy(itemNum){
         alert(`You purchased item ${itemNum+1}`)
         }
+        function dispatch(path){
+        window.location.href=path
+        }
+
