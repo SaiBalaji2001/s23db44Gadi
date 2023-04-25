@@ -1,17 +1,11 @@
 extends layout
-
 block content
-  h1=title
-  p Welcome to #{title} world
-  button(type="button", class="btn btn-secondary" onclick="doReduce()") Press Me
-  div(id="reduce") Reduce the value
-  script.
-    var count = 20
-    var change = -1
-    function doReduce(){
-      count = count + change
-      change = change -1
-      document.getElementById("reduce").innerText = `Count ${count} with change ${change}`
-    }
-
-  a(href='/Drink') Drinks class Link
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/Drinks") Take me to Drinks
+    br
+    a(href="/logout") Logout
